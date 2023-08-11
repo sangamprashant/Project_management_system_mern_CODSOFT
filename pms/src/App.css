@@ -1,0 +1,138 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.row{
+  margin: 0;
+}
+.sideNav{
+  position: fixed;
+  width: 30%;
+  background-color: black;
+  height: 100vh;
+  color: #ffffff;
+  font-size: 20px;
+  padding-top: 5px;
+}
+ul{
+  text-decoration: none;
+  list-style: none;
+}
+.sideNav >ul>.option{
+  background-color: rgb(255, 77, 0);
+  width: 100%;
+  text-align: center;
+  border-radius: 10px;
+  margin-top: 40px;
+}
+.sideNav >ul>.option:hover{
+  background-color: rgb(37, 37, 37);
+
+}
+.topNav{
+  width: 70%;
+  padding: 0;
+  margin-left: 30%;
+}
+.nav{
+  position: fixed;
+  background: #ffffff;
+  border-bottom: 1px solid black;
+  box-shadow: 0px 1px 2px rgba(255, 99, 71, 0.5);
+  height: 50px;
+  width: 70%;
+  z-index: 1;
+}
+h5{
+  text-align: center;
+  width: 100%;
+  font-size: 35px;
+}
+.title{
+  color: rgb(255, 77, 0);
+}
+
+.log{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.log>.card{
+  margin-top: 10%;
+  padding: 5px;
+}
+.log_label{
+  padding: 5px;
+  margin-top: 10px;
+}
+.logfield{
+  width: 100%;
+  padding: 5px;
+
+}
+.button_log{
+  background: rgb(255, 77, 0);
+  border: none;
+  border-radius:20px;
+}
+
+/* hero */
+.hero {
+  /* background-image: url("https://th.bing.com/th/id/OIP.4XB8NF1awQyApnQDDmBmQwHaEo?pid=ImgDet&rs=1"); */
+  background: rgb(208, 208, 208);
+  width: 100%;
+  height: 300px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+}
+.heading{
+  padding-top: 140px;
+  color: #ffffff;
+}
+.heading_span{
+  color: rgb(255, 77, 0);
+}
+.service{
+  margin-top: 20px;
+}
+.service_item{
+  width: 25%;
+}
+.service_item_detail{
+  display: flex;
+  align-content: center;
+  justify-items: center;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+/* about */
+.colmd6{
+width: 50%;
+}
+.about_image{
+  width: 100%;
+  border-radius: 20px;
+  height: 300px;
+  object-fit: cover;
+}
+/* footer */
+.footer{
+  margin-top: 20px;
+  border-top: 1px solid black;
+  box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.2);
+}
+.footer_item{
+  display: flex;
+  align-items: center;
+}
+
+
+@media (max-width: 992px) {
+  h5 {
+    font-size: 20px;
+  }
+}
