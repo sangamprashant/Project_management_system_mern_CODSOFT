@@ -17,13 +17,13 @@ app.use(cors());
 app.use(express.json());
 
 require("./models/Application");
-// require("./models/Admin");
+require("./models/User");
 // require("./models/type");
 // require("./models/course");
 // require("./models/email");
 // require("./models/visitors");
 app.use(require("./routes/Application"));
-// app.use(require("./routes/admin"));
+app.use(require("./routes/User"));
 // app.use(require("./routes/type"));
 // app.use(require("./routes/course"));
 // app.use(require("./routes/email"));

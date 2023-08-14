@@ -6,6 +6,7 @@ import Footer from "./component/Footer";
 import Home from "./component/Home";
 import Sidenav from "./component/Sidenav";
 import Signin from "./component/Signin";
+import PageNotFound from "./component/PageNotFound";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route exact path="/" element={<Home />} />
             <Route exact path="/signin" element={<Signin />} />
             <Route exact path="/apply" element={<Apply />} />
+            <Route exact path="*" element={<PageNotFound />} />
           </Routes>
           <Footer />
         </div>
