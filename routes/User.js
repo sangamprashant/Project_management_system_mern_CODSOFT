@@ -7,12 +7,14 @@ const nodemailer = require("nodemailer");
 
 router.post("/api/admin/create/user", async (req, res) => {
   try {
-    const { name, email, password, type } = req.body;
+    const { name, email } = req.body;
+    const password ="1234"
+    const type ="employee"
 
     // Check if the email is already registered
     const existingUser = await PROJECTMANAGEMENTSYSYEMUSER.findOne({ email });
     if (existingUser) {
-      return res.status(409).json({ message: "Email already registered" });
+      return res.status(200).json({ error: "Email already registered" });
     }
 
     // Hash the password
@@ -38,7 +40,7 @@ router.post("/api/admin/create/user", async (req, res) => {
       .status(201)
       .json({ message: "User created successfully.", user: savedUser });
   } catch (error) {
-    res.status(500).json({ message: "An error occurred.", error });
+    res.status(500).json({ error: "An error occurred.", error });
   }
 });
 router.post("/api/all/login", async (req, res) => {

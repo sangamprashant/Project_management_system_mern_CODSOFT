@@ -152,3 +152,46 @@ background-color: rgb(223, 223, 223);
     font-size: 20px;
   }
 }
+
+
+/* admin dashboard */
+
+.admin_dashboard{
+  padding-top: 150px;
+  padding-bottom: 200px;
+}
+.dashboard_item_count{
+  color: rgb(255, 77, 0);
+}
+.dashboard_item_label{
+  text-align: center;
+}
+
+
+.colmd4{
+  width: 35%;
+}
+.colmd8{
+  width: 65%;
+}
+.user_image{
+  width: 100%;
+}
+.aling_center{
+  align-items: center;
+  display: flex;
+}
+
+/* Hide specific containers when printing */
+@media print {
+  .container_to_hide {
+    display: none;
+  }
+  .topNav{
+    width: 100%;
+    margin: 0;
+  }
+  .nav{
+    width: 100%;
+  }
+}

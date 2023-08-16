@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="footer">
+    <div className="footer container_to_hide">
       <div className="row footer_item">
         <div className="col-md-6">
           <h5 className="heading_span">Project Management System</h5>
