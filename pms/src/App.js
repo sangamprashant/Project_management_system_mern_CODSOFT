@@ -11,6 +11,8 @@ import Signin from "./component/Signin";
 import PageNotFound from "./component/PageNotFound";
 import Dashboard from "./component/Admin/Dashboard";
 import AddEmployee from "./component/Admin/AddEmployee";
+import ViewEmployee from "./component/Admin/ViewEmployee";
+import ViewApplication from "./component/Admin/ViewApplications";
 
 function App() {
   return (
@@ -27,7 +29,9 @@ function App() {
             <Route exact path="/apply" element={<Apply />} />
             {/* admin */}
             <Route exact path="/admin/dashboard" element={<Dashboard />} />
+            <Route exact path="/admin/view/applications" element={<ViewApplication />} />
             <Route exact path="/admin/add/employee" element={<AddEmployee />} />
+            <Route exact path="/admin/view/employee" element={<ViewEmployee />} />
 
             <Route exact path="*" element={<PageNotFound />} />
           </Routes>

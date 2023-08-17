@@ -47,7 +47,7 @@ router.get("/api/get/applications", async (req, res) => {
   }
 });
 //delete an application
-router.delete("/api/delete/application/:id", async (req, res) => {
+router.delete("/api/delete/applications/:id", async (req, res) => {
   try {
     const deletedApplication =
       await PROJECTMANAGEMENTSYSYEMAPPLICATION.findByIdAndDelete(req.params.id);
