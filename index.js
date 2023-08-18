@@ -37,10 +37,10 @@ mongoose.connection.on("error", () => {
   console.log("Failed to connect to mongo");
 });
 // Serve the frontend
-app.use(express.static(path.join(__dirname, "frontend/build")));
+app.use(express.static(path.join(__dirname, "pms/build")));
 app.get("*", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "frontend/build/index.html"),
+    path.join(__dirname, "pms/build/index.html"),
     function (err) {
       if (err) {
         res.status(500).send(err);
