@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -18,17 +18,18 @@ import AssignWork from "./component/Admin/AssignWork";
 import WorkStatus from "./component/Admin/WorkStatus";
 
 function App() {
+  const [logged,setLogged] = useState(false)
   return (
     <BrowserRouter>
       <div className="row">
-        <Sidenav />
+        <Sidenav logged={logged} setLogged={setLogged}/>
         <div className="topNav">
           <div className="nav">
             <h5 className="title">💼 Project Management System</h5>
           </div>
           <Routes>
             <Route exact path="/" element={<Home />} />
-            <Route exact path="/signin" element={<Signin />} />
+            <Route exact path="/signin" element={<Signin setLogged={setLogged}/>} />
             <Route exact path="/apply" element={<Apply />} />
             {/* admin */}
             <Route exact path="/admin/dashboard" element={<Dashboard />} />

@@ -1,11 +1,21 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
 
   const [countUser,setCountUser] = useState(0);
   const [countApplications,setCountApplications] = useState(0)
   const [workCounts, setWorkCounts] = useState({ canceledCount: 0, remainingCount: 0 });
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    // Retrieve user data from local storage when the component mounts
+    const storedUserData = JSON.parse(localStorage.getItem("user"));
+    if(!storedUserData||storedUserData.type!=="admin"){
+      navigate("/signin")
+    }
+  }, []);
 
   useEffect(() => {
     // Fetch employee count when the component mounts

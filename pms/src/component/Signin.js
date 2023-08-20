@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-function Signin() {
+function Signin({ setLogged }) {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,6 +22,7 @@ function Signin() {
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
         toast.success(message);
+        setLogged(true)
   
         // Check user type and navigate accordingly
         if (user.type === "admin") {

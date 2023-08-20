@@ -2,10 +2,20 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Loading from "../Loading";
+import { useNavigate } from "react-router-dom";
 
 function ViewApplications() {
   const [Users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    // Retrieve user data from local storage when the component mounts
+    const storedUserData = JSON.parse(localStorage.getItem("user"));
+    if(!storedUserData||storedUserData.type!=="admin"){
+      navigate("/signin")
+    }
+  }, []);
 
   useEffect(() => {
     // Fetch Users when the component mounts

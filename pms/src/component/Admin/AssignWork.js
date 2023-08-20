@@ -14,6 +14,14 @@ function AssignWork() {
   const [print, setPrint] = useState(true);
 
   useEffect(() => {
+    // Retrieve user data from local storage when the component mounts
+    const storedUserData = JSON.parse(localStorage.getItem("user"));
+    if(!storedUserData||storedUserData.type!=="admin"){
+      navigate("/signin")
+    }
+  }, []);
+
+  useEffect(() => {
     // Fetch Users when the component mounts
     fetchUsers();
   }, []);

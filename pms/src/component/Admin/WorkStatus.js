@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Loading from "../Loading";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function WorkStatus() {
   const [workByStatus, setWorkStatus] = useState({
@@ -14,6 +15,15 @@ function WorkStatus() {
   const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState("Pending");
   const [showData, setShowData] = useState([]);
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    // Retrieve user data from local storage when the component mounts
+    const storedUserData = JSON.parse(localStorage.getItem("user"));
+    if(!storedUserData||storedUserData.type!=="admin"){
+      navigate("/signin")
+    }
+  }, []);
 
   useEffect(() => {
     // Fetch Users when the component mounts
