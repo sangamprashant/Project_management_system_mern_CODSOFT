@@ -14,6 +14,8 @@ import AddEmployee from "./component/Admin/AddEmployee";
 import ViewEmployee from "./component/Admin/ViewEmployee";
 import ViewApplication from "./component/Admin/ViewApplications";
 import Loading from "./component/Loading";
+import AssignWork from "./component/Admin/AssignWork";
+import WorkStatus from "./component/Admin/WorkStatus";
 
 function App() {
   return (
@@ -31,9 +33,12 @@ function App() {
             {/* admin */}
             <Route exact path="/admin/dashboard" element={<Dashboard />} />
             <Route exact path="/admin/view/applications" element={<ViewApplication />} />
+            <Route exact path="/admin/give/work" element={<AssignWork />} />
+            <Route exact path="/admin/work/status" element={<WorkStatus />} />
             <Route exact path="/admin/add/employee" element={<AddEmployee />} />
             <Route exact path="/admin/view/employee" element={<ViewEmployee />} />
-            <Route exact path="loading" element={<Loading />} />
+
+
             <Route exact path="*" element={<PageNotFound />} />
           </Routes>
           <Footer />

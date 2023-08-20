@@ -11,15 +11,20 @@ function Sidenav() {
       <div className="sideNav container_to_hide">
         <ul className="container">
           <div onClick={()=>{navigate("/")}}>
-            <h5>💼 PMS</h5>
+            <h5 className="title">💼 PMS</h5>
           </div>
           <li className="option" onClick={()=>{navigate("/signin")}}><a >Signin</a></li>
           <li className="option" onClick={()=>{navigate("/apply")}}><a >Apply</a></li>
           {/* admin */}
           <li className="option" onClick={()=>{navigate("/admin/dashboard")}}><a >Admin Dashboard</a></li>
           <li className="option" onClick={()=>{navigate("/admin/view/applications")}}><a >View Application</a></li>
+          <li className="option" onClick={()=>{navigate("/admin/give/work")}}><a >Assign Work</a></li>
+          <li className="option" onClick={()=>{navigate("/admin/work/status")}}><a >Work Status</a></li>
           <li className="option" onClick={()=>{navigate("/admin/add/employee")}}><a >Add Employee</a></li>
           <li className="option" onClick={()=>{navigate("/admin/view/employee")}}><a >View Employee</a></li>
+          {/* Employee */}
+          <li className="option" onClick={()=>{navigate("/admin/view/employee")}}><a >Employee Dashboard</a></li>
+
           <li className="option" onClick={()=>{handelLogout()}}><a >Logout</a></li>
         </ul>
       </div>

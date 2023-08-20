@@ -2,6 +2,9 @@
   margin: 0;
   padding: 0;
 }
+.right-align-text {
+  text-align: right;
+}
 .row {
   margin: 0;
 }
@@ -46,6 +49,7 @@ h5 {
   text-align: center;
   width: 100%;
   font-size: 35px;
+  cursor: pointer;
 }
 .title {
   color: rgb(255, 77, 0);
@@ -98,6 +102,10 @@ h5 {
 }
 .service_item {
   width: 25%;
+}
+.service_item>.card:hover {
+  cursor: pointer;
+  background: #f0f0f0;
 }
 .service_item_detail {
   display: flex;
@@ -228,6 +236,21 @@ th.action {
   }
 }
 /* loading effect end */
+
+/* status */
+.Status{
+margin-top: 100px;
+}
+.status_option{
+  width: 20%;
+}
+.status_option>.card{
+  cursor: pointer;
+}
+.cancel_text{
+  cursor: pointer;
+  color: red;
+}
 
 /* Hide specific containers when printing */
 @media print {

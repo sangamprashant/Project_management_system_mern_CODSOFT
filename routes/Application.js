@@ -64,5 +64,15 @@ router.delete("/api/delete/applications/:id", async (req, res) => {
       .json({ message: "An error occurred while deleting the application" });
   }
 });
+// Route to get the count of application
+router.get("/api/applications/count", async (req, res) => {
+  try {
+    const employeeCount = await PROJECTMANAGEMENTSYSYEMAPPLICATION.countDocuments({ type: "employee" });
+    res.json({ count: employeeCount });
+  } catch (error) {
+    console.error("Error getting employee count:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
 
 module.exports = router;

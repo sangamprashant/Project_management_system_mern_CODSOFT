@@ -90,5 +90,33 @@ router.delete("/api/delete/user/:id", async (req, res) => {
     res.status(500).json({ message: "An error occurred while deleting the application" });
   }
 });
+// Add this route to your existing Express.js application
+router.get("/api/get/user/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId; // Extract userId from URL parameter
 
+    // Retrieve user details based on userId (you should replace this with your data retrieval logic)
+    const user = await PROJECTMANAGEMENTSYSYEMUSER.findById({_id:userId});
+
+    if (!user) {
+      return res.status(200).json({ error: "User not found" });
+    }
+
+    // Respond with the user details
+    res.status(200).json({message:"user found", user});
+  } catch (error) {
+    console.error("Error fetching user details:", error);
+    res.status(500).json({ error: "An error occurred while fetching user details" });
+  }
+});
+//get count employee for user
+router.get("/api/employees/count", async (req, res) => {
+  try {
+    const employeeCount = await PROJECTMANAGEMENTSYSYEMUSER.countDocuments({ type: "employee" });
+    res.json({ count: employeeCount });
+  } catch (error) {
+    console.error("Error getting employee count:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
 module.exports = router;

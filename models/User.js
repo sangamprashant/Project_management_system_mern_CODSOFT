@@ -7,7 +7,7 @@ const applicationSchema = new mongoose.Schema({
   type: {
     type: String,
     required: true,
-    enum: ["admin", "employee"], // Allowed values for the 'type' field
+    enum: ["admin", "employee"],
   },
 });
 
