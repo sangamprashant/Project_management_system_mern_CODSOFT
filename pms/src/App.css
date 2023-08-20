@@ -1,11 +1,11 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
-.row{
+.row {
   margin: 0;
 }
-.sideNav{
+.sideNav {
   position: fixed;
   width: 30%;
   background-color: black;
@@ -14,27 +14,26 @@
   font-size: 20px;
   padding-top: 5px;
 }
-ul{
+ul {
   text-decoration: none;
   list-style: none;
 }
-.sideNav >ul>.option{
+.sideNav > ul > .option {
   background-color: rgb(255, 77, 0);
   width: 100% !important;
   text-align: center;
   border-radius: 10px;
   margin-top: 40px;
 }
-.sideNav >ul>.option:hover{
+.sideNav > ul > .option:hover {
   background-color: rgb(37, 37, 37);
-
 }
-.topNav{
+.topNav {
   width: 70%;
   padding: 0;
   margin-left: 30%;
 }
-.nav{
+.nav {
   position: fixed;
   background: #ffffff;
   border-bottom: 1px solid black;
@@ -43,39 +42,38 @@ ul{
   width: 70%;
   z-index: 1;
 }
-h5{
+h5 {
   text-align: center;
   width: 100%;
   font-size: 35px;
 }
-.title{
+.title {
   color: rgb(255, 77, 0);
 }
 
-.log{
+.log {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   align-content: center;
 }
-.log>.card{
+.log > .card {
   margin-top: 10%;
   padding: 5px;
 }
-.log_label{
+.log_label {
   padding: 5px;
   margin-top: 10px;
 }
-.logfield{
+.logfield {
   width: 100%;
   padding: 5px;
-
 }
-.button_log{
+.button_log {
   background: rgb(255, 77, 0);
   border: none;
-  border-radius:20px;
+  border-radius: 20px;
 }
 
 /* hero */
@@ -88,20 +86,20 @@ h5{
   background-size: cover;
   object-fit: cover;
 }
-.heading{
+.heading {
   padding-top: 140px;
   color: #ffffff;
 }
-.heading_span{
+.heading_span {
   color: rgb(255, 77, 0);
 }
-.service{
+.service {
   margin-top: 20px;
 }
-.service_item{
+.service_item {
   width: 25%;
 }
-.service_item_detail{
+.service_item_detail {
   display: flex;
   align-content: center;
   justify-items: center;
@@ -110,42 +108,41 @@ h5{
   align-items: center;
 }
 /* about */
-.colmd6{
-width: 50%;
+.colmd6 {
+  width: 50%;
 }
-.about_image{
+.about_image {
   width: 100%;
   border-radius: 20px;
   height: 300px;
   object-fit: cover;
 }
 /* footer */
-.footer{
+.footer {
   margin-top: 20px;
   border-top: 1px solid black;
   box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.2);
 }
-.footer_item{
+.footer_item {
   display: flex;
   align-items: center;
 }
 
 /* page not found */
-.page_not_found{
-padding-top: 40vh;
-padding-bottom: 40vh;
-display: grid;
-justify-content: center;
-text-align: center;
-background-color: rgb(223, 223, 223);
+.page_not_found {
+  padding-top: 40vh;
+  padding-bottom: 40vh;
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  background-color: rgb(223, 223, 223);
 }
-.page_not_found>button{
+.page_not_found > button {
   background-color: rgb(43, 153, 226);
 }
-.page_not_found>button:hover{
+.page_not_found > button:hover {
   background-color: rgb(94, 191, 255);
 }
-
 
 @media (max-width: 992px) {
   h5 {
@@ -153,68 +150,95 @@ background-color: rgb(223, 223, 223);
   }
 }
 
-
 /* admin dashboard */
 
-.admin_dashboard{
+.admin_dashboard {
   padding-top: 150px;
   padding-bottom: 200px;
 }
-.dashboard_item_count{
+.dashboard_item_count {
   color: rgb(255, 77, 0);
 }
-.dashboard_item_label{
+.dashboard_item_label {
   text-align: center;
 }
 
-
-.colmd4{
+.colmd4 {
   width: 35%;
 }
-.colmd8{
+.colmd8 {
   width: 65%;
 }
-.user_image{
+.user_image {
   width: 100%;
 }
-.aling_center{
+.aling_center {
   align-items: center;
   display: flex;
 }
 
-.action_items{
+.action_items {
   display: flex;
   justify-content: space-evenly;
 }
-.content_cell{
+.content_cell {
   padding-right: 8px;
 }
-th.action{
+th.action {
   text-align: center;
 }
-.fa{
+.fa {
   cursor: pointer;
 }
-.fa-trash-can{
+.fa-trash-can {
   color: red;
 }
-.fa-handshake{
+.fa-handshake {
   color: green;
 }
-.fa-eye{
+.fa-eye {
   color: blue;
 }
+
+/* loading effect  */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.loading-spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3); /* Adjust the color and size as needed */
+  border-top: 4px solid #3498db; /* Adjust the color as needed */
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 1s linear infinite; /* Spin animation */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* loading effect end */
 
 /* Hide specific containers when printing */
 @media print {
   .container_to_hide {
     display: none;
   }
-  .topNav{
+  .topNav {
     width: 100%;
     margin: 0;
   }
-  .nav{
+  .nav {
     width: 100%;
   }
 }

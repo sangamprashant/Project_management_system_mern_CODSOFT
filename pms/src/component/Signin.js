@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Signin() {
   const navigate = useNavigate();
@@ -14,17 +15,22 @@ function Signin() {
         password: password,
       });
 
-      const { token, user } = response.data;
+      if(response.data.message){
+        const { token, user,message } = response.data;
 
-      // Save the token and user details to local storage or state
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
-
-      // Check user type and navigate accordingly
-      if (user.type === "admin") {
-        navigate("/admin/dashboard");
-      } else {
-        navigate("/employee");
+        // Save the token and user details to local storage or state
+        localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
+        toast.success(message);
+  
+        // Check user type and navigate accordingly
+        if (user.type === "admin") {
+          navigate("/admin/dashboard");
+        } else {
+          navigate("/employee");
+        }
+      }else{
+        toast.error(response.data.error);
       }
     } catch (error) {
       console.error("Login failed:", error);

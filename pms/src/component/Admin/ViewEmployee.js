@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Loading from "../Loading";
 
 function ViewEmployee() {
   const [Users, setUsers] = useState([]);
+  const [loading,setLoading] = useState(true);
 
   useEffect(() => {
     // Fetch Users when the component mounts
@@ -13,6 +15,7 @@ function ViewEmployee() {
     try {
       const response = await axios.get("http://localhost:5000/api/get/user");
       setUsers(response.data);
+      setLoading(false)
     } catch (error) {
       console.error("Error fetching Users:", error);
     }
@@ -30,7 +33,7 @@ function ViewEmployee() {
 
   return (
     <div>
-      <div className="log">
+      {loading? <Loading value="Employees"/> :<div className="log">
         <div className="card">
           <h2>Employee List</h2>
           <hr/>
@@ -59,7 +62,7 @@ function ViewEmployee() {
             </tbody>
           </table>
         </div>
-      </div>
+      </div>}
     </div>
   );
 }

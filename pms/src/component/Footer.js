@@ -5,7 +5,7 @@ function Footer() {
     <div className="footer container_to_hide">
       <div className="row footer_item">
         <div className="col-md-6">
-          <h5 className="heading_span">Project Management System</h5>
+          <h5 className="heading_span">💼 Project Management System</h5>
         </div>
         <div className="col-md-6">
           <div className="row">

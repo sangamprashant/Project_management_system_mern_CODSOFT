@@ -11,7 +11,7 @@ function Sidenav() {
       <div className="sideNav container_to_hide">
         <ul className="container">
           <div onClick={()=>{navigate("/")}}>
-            <h5>Logo here</h5>
+            <h5>💼 PMS</h5>
           </div>
           <li className="option" onClick={()=>{navigate("/signin")}}><a >Signin</a></li>
           <li className="option" onClick={()=>{navigate("/apply")}}><a >Apply</a></li>

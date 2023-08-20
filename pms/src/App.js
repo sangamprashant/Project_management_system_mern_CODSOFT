@@ -13,6 +13,7 @@ import Dashboard from "./component/Admin/Dashboard";
 import AddEmployee from "./component/Admin/AddEmployee";
 import ViewEmployee from "./component/Admin/ViewEmployee";
 import ViewApplication from "./component/Admin/ViewApplications";
+import Loading from "./component/Loading";
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         <Sidenav />
         <div className="topNav">
           <div className="nav">
-            <h5 className="title">Project Management System</h5>
+            <h5 className="title">💼 Project Management System</h5>
           </div>
           <Routes>
             <Route exact path="/" element={<Home />} />
@@ -32,7 +33,7 @@ function App() {
             <Route exact path="/admin/view/applications" element={<ViewApplication />} />
             <Route exact path="/admin/add/employee" element={<AddEmployee />} />
             <Route exact path="/admin/view/employee" element={<ViewEmployee />} />
-
+            <Route exact path="loading" element={<Loading />} />
             <Route exact path="*" element={<PageNotFound />} />
           </Routes>
           <Footer />

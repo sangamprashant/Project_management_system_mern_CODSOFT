@@ -24,11 +24,10 @@ function AddEmployee() {
     try {
         const response = await axios.post("http://localhost:5000/api/admin/create/user",{email: email,name: name,});
 
-      setUserDetails(response.data);
-
       if (response.data.message) {
         toast.success(response.data.message);
         setPrintContainer(true);
+        setUserDetails(response.data.user);
       } else {
         toast.error(response.data.error);
       }
