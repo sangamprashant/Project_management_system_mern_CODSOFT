@@ -119,4 +119,63 @@ router.get("/api/employees/count", async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
+//change password
+router.post("/api/change/password/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId; // Extract userId from URL parameter
+    const { currentPassword, newPassword } = req.body;
+
+    // Retrieve the user based on userId
+    const user = await PROJECTMANAGEMENTSYSYEMUSER.findById(userId);
+
+    if (!user) {
+      return res.status(200).json({ error: "User not found" });
+    }
+
+    // Check if the current password matches the stored hashed password
+    const isPasswordValid = await bcrypt.compare(currentPassword, user.password);
+
+    if (!isPasswordValid) {
+      return res.status(200).json({ error: "Current password is incorrect" });
+    }
+
+    // Hash the new password
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update the user's password in the database
+    user.password = hashedNewPassword;
+    await user.save();
+
+    res.status(200).json({ message: "Password changed successfully" });
+  } catch (error) {
+    console.error("Error changing password:", error);
+    res.status(200).json({ error: "An error occurred while changing the password" });
+  }
+});
+// Update user's name
+router.put("/api/update/name/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId; // Extract userId from URL parameter
+    const { newName } = req.body; // Get the new name from the request body
+
+    // Retrieve the user by userId
+    const user = await PROJECTMANAGEMENTSYSYEMUSER.findById(userId);
+
+    if (!user) {
+      return res.status(200).json({ error: "User not found" });
+    }
+
+    // Update the user's name
+    user.name = newName;
+
+    // Save the updated user
+    await user.save();
+
+    // Respond with a success message
+    res.status(200).json({ message: "Name updated successfully", user });
+  } catch (error) {
+    console.error("Error updating user's name:", error);
+    res.status(200).json({ error: "An error occurred while updating user's name" });
+  }
+});
 module.exports = router;

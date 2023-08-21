@@ -103,7 +103,18 @@ h5 {
 .service_item {
   width: 25%;
 }
+.user_item {
+  width: 33%;
+}
 .service_item>.card:hover {
+  cursor: pointer;
+  background: #f0f0f0;
+}
+.status_option>.card:hover {
+  cursor: pointer;
+  background: #f0f0f0;
+}
+.user_item>.card:hover {
   cursor: pointer;
   background: #f0f0f0;
 }
@@ -250,6 +261,10 @@ margin-top: 100px;
 .cancel_text{
   cursor: pointer;
   color: red;
+}
+.next_text{
+  cursor: pointer;
+  color: green;
 }
 
 /* Hide specific containers when printing */

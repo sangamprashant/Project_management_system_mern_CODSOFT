@@ -28,7 +28,7 @@ function Signin({ setLogged }) {
         if (user.type === "admin") {
           navigate("/admin/dashboard");
         } else {
-          navigate("/employee");
+          navigate("/employee/dashboard");
         }
       }else{
         toast.error(response.data.error);

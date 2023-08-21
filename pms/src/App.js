@@ -16,6 +16,10 @@ import ViewApplication from "./component/Admin/ViewApplications";
 import Loading from "./component/Loading";
 import AssignWork from "./component/Admin/AssignWork";
 import WorkStatus from "./component/Admin/WorkStatus";
+import EmployeeDashboard from "./component/Employee/EmployeeDashboard";
+import ChnagePassword from "./component/Employee/ChnagePassword";
+import UpdateName from "./component/Employee/UpdateName";
+import EmployeeWorkStatus from "./component/Employee/EmployeeWorkStatus";
 
 function App() {
   const [logged,setLogged] = useState(false)
@@ -38,7 +42,11 @@ function App() {
             <Route exact path="/admin/work/status" element={<WorkStatus />} />
             <Route exact path="/admin/add/employee" element={<AddEmployee />} />
             <Route exact path="/admin/view/employee" element={<ViewEmployee />} />
-
+            {/* employee */}
+            <Route exact path="/employee/dashboard" element={<EmployeeDashboard />} />
+            <Route exact path="/employee/change/work" element={<EmployeeWorkStatus />} />
+            <Route exact path="/employee/change/name" element={<UpdateName />} />
+            <Route exact path="/employee/change/password" element={<ChnagePassword />} />
 
             <Route exact path="*" element={<PageNotFound />} />
           </Routes>

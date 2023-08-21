@@ -44,8 +44,17 @@ function Sidenav({ logged , setLogged }) {
       }if(storedUserData.type=="employee"){
         return(<>
           {/* Employee */}
-          <li className="option" onClick={() => navigate("/admin/view/employee")}>
+          <li className="option" onClick={() => navigate("/employee/dashboard")}>
             <a>Employee Dashboard</a>
+          </li>
+          <li className="option" onClick={() => navigate("/employee/change/work")}>
+            <a>Work Order</a>
+          </li>
+          <li className="option" onClick={() => navigate("/employee/change/name")}>
+            <a>Change Name</a>
+          </li>
+          <li className="option" onClick={() => navigate("/employee/change/password")}>
+            <a>Change Password</a>
           </li>
           <li className="option" onClick={handelLogout}>
             <a>Logout</a>

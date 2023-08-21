@@ -37,8 +37,10 @@ router.post("/api/assign/work", async (req, res) => {
 router.get("/api/get/all/works", async (req, res) => {
   try {
     // Fetch all work orders and populate the "assignedTo" field with user names
-    const work = await PROJECTMANAGEMENTSYSYEMWorkOrder.find()
-      .populate("assignedTo", "name"); // Populate with the "name" field of the "User" model
+    const work = await PROJECTMANAGEMENTSYSYEMWorkOrder.find().populate(
+      "assignedTo",
+      "name"
+    ); // Populate with the "name" field of the "User" model
 
     // Create objects to store work orders based on status
     const workByStatus = {
@@ -81,7 +83,9 @@ router.put("/api/update/status/:id", async (req, res) => {
       return res.status(200).json({ error: "Work order not found" });
     }
 
-    return res.status(200).json({ message: "Status updated successfully", workOrder });
+    return res
+      .status(200)
+      .json({ message: "Status updated successfully", workOrder });
   } catch (error) {
     console.error("Error updating status:", error);
     return res.status(200).json({ error: "Internal Server Error" });
@@ -90,15 +94,76 @@ router.put("/api/update/status/:id", async (req, res) => {
 // Route to get the count of canceled and remaining items
 router.get("/api/workorders/count", async (req, res) => {
   try {
-    const canceledCount = await PROJECTMANAGEMENTSYSYEMWorkOrder.countDocuments({ status: "canceled" });
-    const remainingCount = await PROJECTMANAGEMENTSYSYEMWorkOrder.countDocuments({ status: { $ne: "canceled" } });
-    
+    const canceledCount = await PROJECTMANAGEMENTSYSYEMWorkOrder.countDocuments(
+      { status: "canceled" }
+    );
+    const remainingCount =
+      await PROJECTMANAGEMENTSYSYEMWorkOrder.countDocuments({
+        status: { $ne: "canceled" },
+      });
+
     res.json({ canceledCount, remainingCount });
   } catch (error) {
     console.error("Error getting counts:", error);
     res.status(500).json({ message: "Internal server error" });
   }
 });
+//get user order of user
+router.get("/api/user/work/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId; // Extract userId from URL parameter
+    // Retrieve the work orders assigned to this user
+    const userWork = await PROJECTMANAGEMENTSYSYEMWorkOrder.find({
+      assignedTo: userId,
+    });
+    // Create objects to store work orders based on status
+    const workByStatus = {
+      pending: [],
+      confirmed: [],
+      working: [],
+      done: [],
+      canceled: [],
+    };
 
+    // Categorize work orders by status
+    userWork.forEach((item) => {
+      const { status } = item;
+      if (workByStatus.hasOwnProperty(status)) {
+        workByStatus[status].push(item);
+      }
+    });
 
+    res.status(200).json({ message: "find data found", workByStatus });
+  } catch (error) {
+    console.error("Error fetching user's work:", error);
+    res.status(200).json({ error: "An error occurred while fetching user's work" });
+  }
+});
+// Get the count of work orders for a user (where status is pending or confirmed)
+router.get("/api/user/work/count/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId; // Extract userId from URL parameter
+
+    
+    // Count the work orders assigned to this user with status pending or confirmed
+    const Pending = await PROJECTMANAGEMENTSYSYEMWorkOrder.countDocuments({
+      assignedTo: userId,
+      status: { $in: ["pending", "confirmed", "working"] },
+    });
+    const Done = await PROJECTMANAGEMENTSYSYEMWorkOrder.countDocuments({
+      assignedTo: userId,
+      status: "done",
+    });
+    const Canceled = await PROJECTMANAGEMENTSYSYEMWorkOrder.countDocuments({
+      assignedTo: userId,
+      status: "canceled",
+    });
+
+    // Respond with the count of work orders
+    res.status(200).json({ Pending,Done,Canceled });
+  } catch (error) {
+    console.error("Error fetching work order count:", error);
+    res.status(500).json({ error: "An error occurred while fetching work order count" });
+  }
+});
 module.exports = router;

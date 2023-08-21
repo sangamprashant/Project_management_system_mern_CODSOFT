@@ -12,15 +12,15 @@ function Footer() {
             <div className="col-md-6">
               <h5>Usefull links</h5>
               <div>
-                <p>sdf</p>
-                <p>sdf</p>
+                <p>👉sdf</p>
+                <p>👉sdf</p>
               </div>
             </div>
             <div className="col-md-6">
               <h5>Usefull links</h5>
               <div>
-                <p>sdf</p>
-                <p>sdf</p>
+                <p>👉sdf</p>
+                <p>👉sdf</p>
               </div>
             </div>
           </div>

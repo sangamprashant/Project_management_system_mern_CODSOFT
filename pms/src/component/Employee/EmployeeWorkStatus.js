@@ -4,7 +4,7 @@ import Loading from "../Loading";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-function WorkStatus() {
+function EmployeeWorkStatus() {
   const [workByStatus, setWorkStatus] = useState({
     pending: [],
     confirmed: [],
@@ -15,25 +15,28 @@ function WorkStatus() {
   const [loading, setLoading] = useState(true);
   const [title, setTitle] = useState("Pending");
   const [showData, setShowData] = useState([]);
+  const [userId,setUserId] = useState("")
   const navigate = useNavigate()
 
   useEffect(() => {
     // Retrieve user data from local storage when the component mounts
     const storedUserData = JSON.parse(localStorage.getItem("user"));
-    if(!storedUserData||storedUserData.type!=="admin"){
+    if(!storedUserData||storedUserData.type!=="employee"){
       navigate("/signin")
+    }else{
+        setUserId(storedUserData._id)
     }
-  }, []);
+  }, [userId]);
 
   useEffect(() => {
     // Fetch Users when the component mounts
     fetchUsers();
-  }, []);
+  }, [userId]);
 
   const fetchUsers = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/get/all/works"
+        `http://localhost:5000/api/user/work/${userId}`
       );
       setWorkStatus(response.data.workByStatus);
       setShowData(response.data.workByStatus.pending);
@@ -64,10 +67,10 @@ function WorkStatus() {
     setShowData(workByStatus.canceled);
   };
   // Function to cancel a work order
-  const cancelWorkOrder = async (workOrderId) => {
+  const cancelWorkOrder = async (workOrderId,status) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/update/status/${workOrderId}`,{newStatus: "canceled",});
+        `http://localhost:5000/api/update/status/${workOrderId}`,{newStatus: status,});
       if(response.data.message){
         toast.success(response.data.message)
         fetchUsers();
@@ -122,18 +125,22 @@ function WorkStatus() {
             <thead>
               <tr>
                 <th>Title</th>
-                <th>Assigned To</th>
                 <th>Status</th>
-                {title!=="Canceled"&&title!=="Done"?<th>Action</th>:""}
+                {(title!=="Canceled"&&title!=="Done")?<th>Action</th>:""}
               </tr>
             </thead>
             <tbody>
               {showData.map((data) => (
                 <tr key={data._id}>
                   <td>{data.workTitle}</td>
-                  <td>{data.assignedTo.name}</td>
                   <td>{data.status}</td>
-                  {title!=="Canceled"&&title!=="Done"?<td className="cancel_text" onClick={() => cancelWorkOrder(data._id)}>Cancele</td>:""}
+                  {title!=="Canceled"?<td >
+                    <div className="">
+                        {title==="Pending"&&<p className="next_text" onClick={() => cancelWorkOrder(data._id,"confirmed")}>Confirmed</p>}
+                        {title==="Confirmed"&&<p className="next_text" onClick={() => cancelWorkOrder(data._id,"working")}>Working</p>}
+                        {title==="Working"&&<p className="next_text" onClick={() => cancelWorkOrder(data._id,"done")}>Done</p>}
+                    </div>
+                    </td>:""}
                 </tr>
               ))}
             </tbody>
@@ -144,4 +151,4 @@ function WorkStatus() {
   );
 }
 
-export default WorkStatus;
+export default EmployeeWorkStatus;
