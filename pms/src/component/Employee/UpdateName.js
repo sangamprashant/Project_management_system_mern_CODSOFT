@@ -13,6 +13,7 @@ function UpdateName() {
     // Retrieve user data from local storage when the component mounts
     const storedUserData = JSON.parse(localStorage.getItem("user"));
     if (!storedUserData || storedUserData.type !== "employee") {
+      toast.error("Bad request.")
       navigate("/signin");
     } else {
       // Set the user ID from the stored user data
@@ -26,7 +27,7 @@ function UpdateName() {
 
   const handelGetName = () => {
     axios
-      .get(`http://localhost:5000/api/get/user/${userId}`)
+      .get(`/api/get/user/${userId}`)
       .then((response) => {
         setOldName(response.data.user.name);
       })
@@ -38,7 +39,7 @@ function UpdateName() {
   const handleUpdateName = async () => {
     try {
       // Make a PUT request to update the name
-      const response = await axios.put(`http://localhost:5000/api/update/name/${userId}`,{newName: newName,});
+      const response = await axios.put(`/api/update/name/${userId}`,{newName: newName,});
       if (response.data.message) {
         toast.success(response.data.message);
         handelGetName();

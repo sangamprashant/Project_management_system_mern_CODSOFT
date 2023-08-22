@@ -13,6 +13,7 @@ function ViewApplications() {
     // Retrieve user data from local storage when the component mounts
     const storedUserData = JSON.parse(localStorage.getItem("user"));
     if(!storedUserData||storedUserData.type!=="admin"){
+      toast.error("Bad request.")
       navigate("/signin")
     }
   }, []);
@@ -25,7 +26,7 @@ function ViewApplications() {
   const fetchUsers = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/get/applications"
+        "/api/get/applications"
       );
       setUsers(response.data);
       setLoading(false);
@@ -36,7 +37,7 @@ function ViewApplications() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/delete/applications/${id}`);
+      await axios.delete(`/api/delete/applications/${id}`);
       // Refresh the applications list after successful deletion
       toast.success("Application deleted successfully.");
       fetchUsers();

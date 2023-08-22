@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 function Sidenav({ logged , setLogged }) {
   const navigate = useNavigate();
@@ -7,6 +8,7 @@ function Sidenav({ logged , setLogged }) {
   const handelLogout = async () => {
     localStorage.clear();
     setLogged(false)
+    toast.success("Logged out successfully.")
     navigate("/signin");
   };
 
@@ -44,11 +46,14 @@ function Sidenav({ logged , setLogged }) {
       }if(storedUserData.type=="employee"){
         return(<>
           {/* Employee */}
-          <li className="option" onClick={() => navigate("/employee/dashboard")}>
-            <a>Employee Dashboard</a>
+          <li className="option" onClick={() => navigate(`/employee/profile/${storedUserData._id}`)}>
+            <a>Employee Profile</a>
           </li>
           <li className="option" onClick={() => navigate("/employee/change/work")}>
             <a>Work Order</a>
+          </li>
+          <li className="option" onClick={() => navigate("/employee/change/photo")}>
+            <a>Change Photo</a>
           </li>
           <li className="option" onClick={() => navigate("/employee/change/name")}>
             <a>Change Name</a>

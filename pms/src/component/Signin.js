@@ -10,7 +10,7 @@ function Signin({ setLogged }) {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/all/login", {
+      const response = await axios.post("/api/all/login", {
         email: email,
         password: password,
       });
@@ -28,7 +28,7 @@ function Signin({ setLogged }) {
         if (user.type === "admin") {
           navigate("/admin/dashboard");
         } else {
-          navigate("/employee/dashboard");
+          navigate(`/employee/profile/${user._id}`);
         }
       }else{
         toast.error(response.data.error);

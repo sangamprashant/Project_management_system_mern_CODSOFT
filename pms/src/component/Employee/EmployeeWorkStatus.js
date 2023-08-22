@@ -22,6 +22,7 @@ function EmployeeWorkStatus() {
     // Retrieve user data from local storage when the component mounts
     const storedUserData = JSON.parse(localStorage.getItem("user"));
     if(!storedUserData||storedUserData.type!=="employee"){
+      toast.error("Bad request.")
       navigate("/signin")
     }else{
         setUserId(storedUserData._id)
@@ -36,7 +37,7 @@ function EmployeeWorkStatus() {
   const fetchUsers = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/user/work/${userId}`
+        `/api/user/work/${userId}`
       );
       setWorkStatus(response.data.workByStatus);
       setShowData(response.data.workByStatus.pending);
@@ -70,7 +71,7 @@ function EmployeeWorkStatus() {
   const cancelWorkOrder = async (workOrderId,status) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/update/status/${workOrderId}`,{newStatus: status,});
+        `/api/update/status/${workOrderId}`,{newStatus: status,});
       if(response.data.message){
         toast.success(response.data.message)
         fetchUsers();

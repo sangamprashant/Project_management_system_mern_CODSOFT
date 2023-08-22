@@ -2,6 +2,13 @@
   margin: 0;
   padding: 0;
 }
+a{
+  text-decoration: none;
+  color: tomato;
+}
+body{
+  background-color: #f3f3f3;
+}
 .right-align-text {
   text-align: right;
 }
@@ -82,20 +89,22 @@ h5 {
 
 /* hero */
 .hero {
-  /* background-image: url("https://th.bing.com/th/id/OIP.4XB8NF1awQyApnQDDmBmQwHaEo?pid=ImgDet&rs=1"); */
-  background: rgb(208, 208, 208);
+  /* background-color: #2e99e1;
+  background-image: url("./component/image/PMS.png"); */
+  background: rgb(141, 141, 141);
   width: 100%;
   height: 300px;
   background-repeat: no-repeat;
-  background-size: cover;
-  object-fit: cover;
+  background-size: contain;
+  object-fit: contain;
+  background-position: center;
 }
 .heading {
   padding-top: 140px;
   color: #ffffff;
 }
 .heading_span {
-  color: rgb(255, 77, 0);
+  color: rgb(255, 0, 0);
 }
 .service {
   margin-top: 20px;
@@ -135,6 +144,7 @@ h5 {
   border-radius: 20px;
   height: 300px;
   object-fit: cover;
+  background-color: #858585;
 }
 /* footer */
 .footer {
@@ -190,6 +200,7 @@ h5 {
 }
 .user_image {
   width: 100%;
+  border-radius:50%;
 }
 .aling_center {
   align-items: center;

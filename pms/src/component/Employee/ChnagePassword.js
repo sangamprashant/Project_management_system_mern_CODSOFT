@@ -13,6 +13,7 @@ function ChnagePassword() {
     // Retrieve user data from local storage when the component mounts
     const storedUserData = JSON.parse(localStorage.getItem("user"));
     if (!storedUserData || storedUserData.type !== "employee") {
+      toast.error("Bad request.")
       navigate("/signin");
     } else {
       // Set the user ID from the stored user data
@@ -24,7 +25,7 @@ function ChnagePassword() {
     try {
       // Make a POST request to change the password
       const response = await axios.post(
-        `http://localhost:5000/api/change/password/${userId}`,
+        `/api/change/password/${userId}`,
         {
           currentPassword: oldPassword,
           newPassword: newPassword,

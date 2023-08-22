@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Loading from "../Loading";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function ViewEmployee() {
   const [Users, setUsers] = useState([]);
@@ -12,6 +13,7 @@ function ViewEmployee() {
     // Retrieve user data from local storage when the component mounts
     const storedUserData = JSON.parse(localStorage.getItem("user"));
     if(!storedUserData||storedUserData.type!=="admin"){
+      toast.error("Bad request.")
       navigate("/signin")
     }
   }, []);
@@ -23,7 +25,7 @@ function ViewEmployee() {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/get/user");
+      const response = await axios.get("/api/get/user");
       setUsers(response.data);
       setLoading(false)
     } catch (error) {
@@ -33,7 +35,7 @@ function ViewEmployee() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/delete/user/${id}`);
+      await axios.delete(`/api/delete/user/${id}`);
       // Refresh the applications list after successful deletion
       fetchUsers();
     } catch (error) {
@@ -63,8 +65,7 @@ function ViewEmployee() {
                   <td>
                     <div className="action_items">
                       <i className="mx-2 fa fa-trash-can" onClick={() => handleDelete(user._id)}></i>
-                      <i className="mx-2 fa fa-handshake"></i>
-                      <i className="mx-2 fa fa-eye"></i>
+                      <i className="mx-2 fa fa-eye" onClick={() =>{navigate(`/employee/profile/${user._id}`)}}></i>
                     </div>
                   </td>
                 </tr>

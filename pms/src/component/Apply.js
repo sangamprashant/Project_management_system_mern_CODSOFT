@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function Apply() {
   const [name, setName] = useState('');
@@ -16,8 +17,8 @@ function Apply() {
         mobile
       };
 
-      const response = await axios.post('http://localhost:5000/api/submit/application', formData);
-      console.log(response.data);
+      const response = await axios.post('/api/submit/application', formData);
+      toast.success(response.data.message)
 
       // Clear the form fields after successful submission
       setName('');

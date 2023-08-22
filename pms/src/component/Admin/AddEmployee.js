@@ -15,6 +15,7 @@ function AddEmployee() {
     // Retrieve user data from local storage when the component mounts
     const storedUserData = JSON.parse(localStorage.getItem("user"));
     if(!storedUserData||storedUserData.type!=="admin"){
+      toast.error("Bad request.")
       navigate("/signin")
     }
   }, []);
@@ -30,7 +31,7 @@ function AddEmployee() {
     }
 
     try {
-        const response = await axios.post("http://localhost:5000/api/admin/create/user",{email: email,name: name,});
+        const response = await axios.post("/api/admin/create/user",{email: email,name: name,});
 
       if (response.data.message) {
         toast.success(response.data.message);

@@ -3,6 +3,7 @@ import Hero from "./SubHome/Hero";
 import Service from "./SubHome/Service";
 import About from "./SubHome/About";
 import Apply from "./Apply";
+import EmployeeToDisplay from "./SubHome/EmployeeToDisplay";
 
 function Home() {
   return (
@@ -11,6 +12,7 @@ function Home() {
       <Service />
       <About />
       <Apply />
+      <EmployeeToDisplay/>
     </div>
   );
 }

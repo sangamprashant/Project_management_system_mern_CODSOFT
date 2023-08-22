@@ -21,6 +21,7 @@ function WorkStatus() {
     // Retrieve user data from local storage when the component mounts
     const storedUserData = JSON.parse(localStorage.getItem("user"));
     if(!storedUserData||storedUserData.type!=="admin"){
+      toast.error("Bad request.")
       navigate("/signin")
     }
   }, []);
@@ -33,7 +34,7 @@ function WorkStatus() {
   const fetchUsers = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/get/all/works"
+        "/api/get/all/works"
       );
       setWorkStatus(response.data.workByStatus);
       setShowData(response.data.workByStatus.pending);
@@ -67,7 +68,7 @@ function WorkStatus() {
   const cancelWorkOrder = async (workOrderId) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/update/status/${workOrderId}`,{newStatus: "canceled",});
+        `/api/update/status/${workOrderId}`,{newStatus: "canceled",});
       if(response.data.message){
         toast.success(response.data.message)
         fetchUsers();
@@ -131,7 +132,7 @@ function WorkStatus() {
               {showData.map((data) => (
                 <tr key={data._id}>
                   <td>{data.workTitle}</td>
-                  <td>{data.assignedTo.name}</td>
+                  <td>{data.assignedTo?.name}</td>
                   <td>{data.status}</td>
                   {title!=="Canceled"&&title!=="Done"?<td className="cancel_text" onClick={() => cancelWorkOrder(data._id)}>Cancele</td>:""}
                 </tr>

@@ -13,13 +13,14 @@ import Dashboard from "./component/Admin/Dashboard";
 import AddEmployee from "./component/Admin/AddEmployee";
 import ViewEmployee from "./component/Admin/ViewEmployee";
 import ViewApplication from "./component/Admin/ViewApplications";
-import Loading from "./component/Loading";
 import AssignWork from "./component/Admin/AssignWork";
 import WorkStatus from "./component/Admin/WorkStatus";
 import EmployeeDashboard from "./component/Employee/EmployeeDashboard";
 import ChnagePassword from "./component/Employee/ChnagePassword";
 import UpdateName from "./component/Employee/UpdateName";
 import EmployeeWorkStatus from "./component/Employee/EmployeeWorkStatus";
+import AddPhoto from "./component/Employee/AddPhoto";
+import ViewEmployeeProfile from "./component/Employee/ViewEmployeeProfile";
 
 function App() {
   const [logged,setLogged] = useState(false)
@@ -45,9 +46,11 @@ function App() {
             {/* employee */}
             <Route exact path="/employee/dashboard" element={<EmployeeDashboard />} />
             <Route exact path="/employee/change/work" element={<EmployeeWorkStatus />} />
+            <Route exact path="/employee/change/photo" element={<AddPhoto />} />
             <Route exact path="/employee/change/name" element={<UpdateName />} />
             <Route exact path="/employee/change/password" element={<ChnagePassword />} />
 
+            <Route exact path="/employee/profile/:empId" element={<ViewEmployeeProfile />} />
             <Route exact path="*" element={<PageNotFound />} />
           </Routes>
           <Footer />

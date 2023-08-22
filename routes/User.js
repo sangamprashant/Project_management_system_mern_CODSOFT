@@ -178,4 +178,23 @@ router.put("/api/update/name/:userId", async (req, res) => {
     res.status(200).json({ error: "An error occurred while updating user's name" });
   }
 });
+router.post("/api/:id/update/image", async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const { image } = req.body;
+
+    // Find the user by ID
+    const user = await PROJECTMANAGEMENTSYSYEMUSER.findByIdAndUpdate(userId, { image }, { new: true });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Image updated successfully
+    return res.status(200).json({ message: "Image updated successfully", user });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Server error" });
+  }
+});
 module.exports = router;

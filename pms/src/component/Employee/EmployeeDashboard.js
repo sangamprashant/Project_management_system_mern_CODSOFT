@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function EmployeeDashboard() {
 
@@ -12,6 +13,7 @@ function EmployeeDashboard() {
     // Retrieve user data from local storage when the component mounts
     const storedUserData = JSON.parse(localStorage.getItem("user"));
     if(!storedUserData||storedUserData.type!=="employee"){
+      toast.error("Bad request.")
       navigate("/signin")
     }else{
         setUserId(storedUserData._id)
@@ -20,7 +22,7 @@ function EmployeeDashboard() {
 
   useEffect(() => {
 // Fetch worjkorder count when the component mounts
-      axios.get(`http://localhost:5000/api/user/work/count/${userId}`)
+      axios.get(`/api/user/work/count/${userId}`)
       .then((response) => {
         setWorkCounts(response.data);
       })

@@ -17,6 +17,7 @@ function AssignWork() {
     // Retrieve user data from local storage when the component mounts
     const storedUserData = JSON.parse(localStorage.getItem("user"));
     if(!storedUserData||storedUserData.type!=="admin"){
+      toast.error("Bad request.")
       navigate("/signin")
     }
   }, []);
@@ -28,7 +29,7 @@ function AssignWork() {
 
   const fetchUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/get/user");
+      const response = await axios.get("/api/get/user");
       setUsers(response.data);
     } catch (error) {
       console.error("Error fetching Users:", error);
@@ -38,7 +39,7 @@ function AssignWork() {
   const getUserDetails = async (userId) => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/get/user/${userId}`
+        `/api/get/user/${userId}`
       );
       setSelectedUserData(response.data.user);
     } catch (error) {
@@ -68,7 +69,7 @@ function AssignWork() {
       // Assuming you want to log the user details
       if (selectedUserData) {
         const response = await axios.post(
-          "http://localhost:5000/api/assign/work",
+          "/api/assign/work",
           {
             assignedTo: selectedUser,
             workTitle: workname,
@@ -148,7 +149,7 @@ function AssignWork() {
           <h5>Worker Details</h5>
           <div className="row aling_center">
             <div className="colmd4">
-              <img className="user_image" src={user} />
+              <img className="user_image" src={selectedUserData.image?selectedUserData.image:user} />
             </div>
             <div className="colmd8">
               <div>

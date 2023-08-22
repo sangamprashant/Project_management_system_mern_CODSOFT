@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import ViewEmployee from "./ViewEmployee";
+import ViewApplications from "./ViewApplications";
 
 function Dashboard() {
 
@@ -13,13 +16,14 @@ function Dashboard() {
     // Retrieve user data from local storage when the component mounts
     const storedUserData = JSON.parse(localStorage.getItem("user"));
     if(!storedUserData||storedUserData.type!=="admin"){
+      toast.error("Bad request.")
       navigate("/signin")
     }
   }, []);
 
   useEffect(() => {
     // Fetch employee count when the component mounts
-    axios.get("http://localhost:5000/api/employees/count")
+    axios.get("/api/employees/count")
       .then((response) => {
         setCountUser(response.data.count);
       })
@@ -27,7 +31,7 @@ function Dashboard() {
         console.error("Error fetching employee count:", error);
       });
 // Fetch applications count when the component mounts
-      axios.get("http://localhost:5000/api/applications/count")
+      axios.get("/api/applications/count")
       .then((response) => {
         setCountApplications(response.data.count);
       })
@@ -35,7 +39,7 @@ function Dashboard() {
         console.error("Error fetching employee count:", error);
       });
 // Fetch worjkorder count when the component mounts
-      axios.get("http://localhost:5000/api/workorders/count")
+      axios.get("/api/workorders/count")
       .then((response) => {
         setWorkCounts(response.data);
       })
@@ -70,6 +74,10 @@ function Dashboard() {
             <p className="dashboard_item_label">No.of Completed Work</p>
           </div>
         </div>
+      </div>
+      <div className="row">
+        <div className="col-md-6"><ViewEmployee/></div>
+        <div className="col-md-6"><ViewApplications/></div>
       </div>
     </div>
   );
