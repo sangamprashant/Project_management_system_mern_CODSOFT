@@ -21,6 +21,7 @@ import UpdateName from "./component/Employee/UpdateName";
 import EmployeeWorkStatus from "./component/Employee/EmployeeWorkStatus";
 import AddPhoto from "./component/Employee/AddPhoto";
 import ViewEmployeeProfile from "./component/Employee/ViewEmployeeProfile";
+import TopNav from "./component/TopNav";
 
 function App() {
   const [logged,setLogged] = useState(false)
@@ -30,7 +31,7 @@ function App() {
         <Sidenav logged={logged} setLogged={setLogged}/>
         <div className="topNav">
           <div className="nav">
-            <h5 className="title">💼 Project Management System</h5>
+            <TopNav logged={logged} setLogged={setLogged}/>
           </div>
           <Routes>
             <Route exact path="/" element={<Home />} />

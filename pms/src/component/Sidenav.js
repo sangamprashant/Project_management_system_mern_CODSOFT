@@ -81,7 +81,7 @@ function Sidenav({ logged , setLogged }) {
   };
 
   return (
-    <div className="sideNav container_to_hide">
+    <div className="sideNav container_to_hide mobile_control">
       <ul className="container">
         <div onClick={() => navigate("/")}>
           <h5 className="title">💼 PMS</h5>
